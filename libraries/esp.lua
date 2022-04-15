@@ -171,7 +171,7 @@ function Library.Init()
 
     RunService.BindToRenderStep(RunService, "Esp Loop", 1, function()
         for Player, Objects in pairs(Library.Cache) do
-            if (LocalPlayer ~= Player and Library.GetTeam(Player) ~= Library.GetTeam(LocalPlayer)) then
+            if (Player ~= LocalPlayer and Library.GetTeam(Player) ~= Library.GetTeam(LocalPlayer)) then
                 local Character, Torso = Library.GetCharacter(Player)
 
                 if (Character and Torso) then
@@ -233,6 +233,10 @@ function Library.Init()
                     for i,v in pairs(Objects) do
                         v.Visible = false
                     end
+                end
+            else
+                for i,v in pairs(Objects) do
+                    v.Visible = false
                 end
             end
         end
