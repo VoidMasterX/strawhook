@@ -98,13 +98,11 @@ function Library.AddEsp(Player)
         }),
         Box = Create("Square", {
             Thickness = 1,
-            Filled = true,
             ZIndex = Id + 9,
         }),
         BoxOutline = Create("Square", {
             Thickness = 3,
             Color = Color3New(),
-            Filled = true,
             ZIndex = Id + 8
         }),
         BoxFill = Create("Square", {
@@ -115,11 +113,13 @@ function Library.AddEsp(Player)
         }),
         Healthbar = Create("Square", {
             Thickness = 1,
+            Filled = true,
             ZIndex = Id + 6,
         }),
         HealthbarOutline = Create("Square", {
             Thickness = 3,
             Color = Color3New(),
+            Filled = true,
             ZIndex = Id + 5
         }),
         Distance = Create("Text", {
