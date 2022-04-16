@@ -29,6 +29,7 @@ local Library = {
         Boxes = false,
         BoxFill = false,
         Healthbars = false,
+        HealthbarSize = 2,
         Distance = false,
         Tracers = false,
         WidthInStuds = 4,
@@ -184,8 +185,8 @@ function Library.Init()
                         local BoxPosition = RoundVec(Vector2New(X - Width / 2, Y - Height / 2))
                         local BoxSize = Vector2New(Width, Height)
                         local Health, MaxHealth = Library.GetHealth(Character)
-                        local HealthbarPosition = RoundVec(Vector2New(BoxPosition.X - 6, BoxPosition.Y))
-                        local HealthbarSize = Vector2New(2, BoxSize.Y - 0.01)
+                        local HealthbarPosition = RoundVec(Vector2New(BoxPosition.X - (4 + Library.Options.HealthbarSize), BoxPosition.Y))
+                        local HealthbarSize = Vector2New(2, BoxSize.Y)
                         local Magnitude = Round((CurrentCamera.CFrame.p - Torso.Position).Magnitude)
 
                         Objects.Name.Visible = Library.Options.Names
