@@ -209,7 +209,7 @@ function Library.Init()
                         Objects.Healthbar.Visible = Library.Options.Healthbars
                         Objects.Healthbar.Color = Library.Colors.Healthbars
                         Objects.Healthbar.Position = HealthbarPosition
-                        Objects.Healthbar.Size = RoundVec(Vector2New(HealthbarSize.X, HealthbarSize.Y * (Health / MaxHealth)))
+                        Objects.Healthbar.Size = RoundVec(Vector2New(HealthbarSize.X, HealthbarSize.Y * math.clamp(Health / MaxHealth, 0, 1)))
 
                         Objects.HealthbarOutline.Visible = Library.Options.Healthbars
                         Objects.HealthbarOutline.Position = HealthbarPosition
