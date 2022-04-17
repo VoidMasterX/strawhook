@@ -119,7 +119,6 @@ function Library.AddEsp(Player)
         HealthbarOutline = Create("Square", {
             Thickness = 3,
             Color = Color3New(),
-            Filled = true,
             ZIndex = Id + 5
         }),
         Distance = Create("Text", {
