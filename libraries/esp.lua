@@ -141,11 +141,11 @@ function Library.RemoveEsp(Player)
     local Data = Library.Cache[Player]
 
     if (Data) then
+        Library.Cache[Player] = nil
+
         for i,v in pairs(Data) do
             v:Remove()
         end
-
-        Library.Cache[Player] = nil
     end
 end
 
