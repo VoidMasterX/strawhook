@@ -25,6 +25,7 @@ local Library = {
     Drawings = {},
     Options = {
         Enabled = false,
+        VisibleOnly = false
         Names = false,
         Boxes = false,
         BoxFill = false,
@@ -72,6 +73,11 @@ end
 function Library.GetCharacter(Player)
     local Character = Player.Character
     return Character, Character and FindFirstChild(Character, "HumanoidRootPart")
+end
+
+function Library.VisibleCheck(Origin, Target, Character)
+    local Part = workspace:FindPartOnRayWithIgnoreList(Ray.new(Origin, Target - Origin), { CurrentCamera, LocalPlayer.Character, Character }, false, true)
+    return Part == nil
 end
 
 function Library.GetHealth(Character)
@@ -144,6 +150,7 @@ function Library.RemoveEsp(Player)
         Library.Cache[Player] = nil
 
         for i,v in pairs(Data) do
+
             v:Remove()
         end
     end
@@ -177,6 +184,10 @@ function Library.Init()
 
                 if (Character and Torso) then
                     local TorsoPosition, OnScreen, Depth = WorldToViewportPoint(Torso.Position)
+
+                    if (Library.Options.VisibleOnly and Library.VisibleCheck(CurrentCamera.CFrame.p, Torso.Position)) then
+                        OnScreen = false
+                    end
 
                     if (OnScreen and Library.Options.Enabled) then
                         local ScaleFactor = 1 / (Tan(Rad(CurrentCamera.FieldOfView / 2)) * 2 * Depth) * 1000
