@@ -16,6 +16,7 @@ local Round = math.round
 local Tan = math.tan
 local Random = math.random
 local Rad = math.rad
+local FindPartOnRayWithIgnoreList = workspace.FindPartOnRayWithIgnoreList
 local CameraWorldToViewportPoint = CurrentCamera.WorldToViewportPoint
 local UnbindFromRenderStep = RunService.UnbindFromRenderStep
 
@@ -25,7 +26,7 @@ local Library = {
     Drawings = {},
     Options = {
         Enabled = false,
-        VisibleOnly = false
+        VisibleOnly = false,
         Names = false,
         Boxes = false,
         BoxFill = false,
@@ -76,7 +77,7 @@ function Library.GetCharacter(Player)
 end
 
 function Library.VisibleCheck(Origin, Target, Character)
-    local Part = workspace:FindPartOnRayWithIgnoreList(Ray.new(Origin, Target - Origin), { CurrentCamera, LocalPlayer.Character, Character }, false, true)
+    local Part = FindPartOnRayWithIgnoreList(workspace, Ray.new(Origin, Target - Origin), { CurrentCamera, LocalPlayer.Character, Character }, false, true)
     return Part == nil
 end
 
