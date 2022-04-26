@@ -1,29 +1,33 @@
 local client = {}; do
     coroutine.wrap(function()
-        local Modules = {scripts = {}}
-
-        for i,v in pairs(getscripts()) do
-            if (v:IsA("ModuleScript") and v.Parent == nil) then
-                Modules[v.Name] = require(v)
-                Modules.scripts[v.Name] = v
+        for i,v in pairs(getloadedmodules()) do
+            if (v.Name == "camera") then
+                client.camera = require(v)
+            elseif (v.Name == "network") then
+                client.network = require(v)
+            elseif (v.Name == "particle") then
+                client.particle = require(v)
+            elseif (v.Name == "sound") then
+                client.sound = require(v)
+            elseif (v.Name == "input") then
+                client.input = require(v)
+            elseif (v.Name == "uiscaler") then
+                client.uiscaler = require(v)
+            elseif (v.Name == "effects") then
+                client.effects = require(v)
+            elseif (v.Name == "ScreenCull") then
+                client.screencull = require(v)
+            elseif (v.Name == "Raycast") then
+                client.raycast = require(v)
+            elseif (v.Name == "BulletCheck") then
+                client.bulletcheck = require(v)
+            elseif (v.Name == "ReplicationSmoother") then
+                client.replicationsmoother = require(v)
+            elseif (v.Name == "physics") then
+                client.trajectory = require(v:Clone()).trajectory
             end
         end
 
-        client.camera = Modules.camera
-        client.network = Modules.network
-        client.particle = Modules.particle
-        client.sound = Modules.sound
-        client.input = Modules.input
-        client.uiscaler = Modules.uiscaler
-        client.effects = Modules.effects
-        client.publicsettings = {
-            bulletLifeTime = 1.5
-        }
-        client.screencull = Modules.ScreenCull
-        client.raycast = Modules.Raycast
-        client.bulletcheck = Modules.BulletCheck
-        client.replicationsmoother = Modules.ReplicationSmoother
-        client.trajectory = require(Modules.scripts.physics:Clone()).trajectory
         client.replication = debug.getupvalue(client.camera.setspectate, 1)
         client.char = debug.getupvalue(client.camera.step, 7)
         client.hud = debug.getupvalue(client.camera.step, 20)
