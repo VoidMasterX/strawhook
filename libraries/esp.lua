@@ -151,8 +151,14 @@ function Library.RemoveEsp(Player)
         Library.Cache[Player] = nil
 
         for i,v in pairs(Data) do
-
-            v:Remove()
+            coroutine.wrap(function()
+                for i = v.Transparency, 0, -0.02 do
+                    v.Transparency = i
+                    task.wait()
+                end
+            
+                v:Remove()
+            end)()
         end
     end
 end
