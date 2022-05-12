@@ -198,9 +198,9 @@ function Library.Init()
                         local BoxPosition = RoundVec(Vector2New(X - Width / 2, Y - Height / 2))
                         local BoxSize = Vector2New(Width, Height)
                         local Health, MaxHealth = Library.GetHealth(Character)
-                        local HealthbarPosition = RoundVec(Vector2New(BoxPosition.X - (4 + Library.Options.HealthbarSize), BoxPosition.Y + BoxSize.Y))
+                        local HealthbarPosition = RoundVec(Vector2New(BoxPosition.X - (2 + Library.Options.HealthbarSize), BoxPosition.Y + BoxSize.Y))
                         local HealthbarSize = RoundVec(Vector2New(Library.Options.HealthbarSize, -BoxSize.Y))
-                        local Magnitude = Round((CurrentCamera.CFrame.p - Torso.Position).Magnitude)
+                        local Magnitude = Round((CurrentCamera.CFrame.Position - Torso.Position).Magnitude)
 
                         Objects.Name.Visible = Library.Options.Names
                         Objects.Name.Color = Library.Colors.Names
@@ -226,8 +226,8 @@ function Library.Init()
                         Objects.Healthbar.Size = RoundVec(Vector2New(HealthbarSize.X, HealthbarSize.Y * (Health / MaxHealth)))
 
                         Objects.HealthbarOutline.Visible = Library.Options.Healthbars
-                        Objects.HealthbarOutline.Position = HealthbarPosition
-                        Objects.HealthbarOutline.Size = HealthbarSize
+                        Objects.HealthbarOutline.Position = HealthbarPosition - Vector2New(1, 1)
+                        Objects.HealthbarOutline.Size = HealthbarSize + Vector2New(2, 2)
 
                         Objects.Distance.Visible = Library.Options.Distance
                         Objects.Distance.Color = Library.Colors.Distance
