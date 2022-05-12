@@ -261,4 +261,4 @@ function Library.Init()
     end
 end
 
-Library.Init()
+return Library
