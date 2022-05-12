@@ -31,7 +31,7 @@ local Library = {
         Boxes = false,
         BoxFill = false,
         Healthbars = false,
-        HealthbarSize = 2,
+        HealthbarSize = 1,
         Distance = false,
         Tracers = false,
         WidthInStuds = 4,
@@ -120,10 +120,12 @@ function Library.AddEsp(Player)
         }),
         Healthbar = Create("Square", {
             Thickness = 1,
+            Filled = true,
             ZIndex = Id + 6,
         }),
         HealthbarOutline = Create("Square", {
             Thickness = 3,
+            Filled = true,
             Color = Color3New(),
             ZIndex = Id + 5
         }),
@@ -151,14 +153,7 @@ function Library.RemoveEsp(Player)
         Library.Cache[Player] = nil
 
         for i,v in pairs(Data) do
-            coroutine.wrap(function()
-                for i = v.Transparency, 0, -0.02 do
-                    v.Transparency = i
-                    task.wait()
-                end
-            
-                v:Remove()
-            end)()
+            v:Remove()
         end
     end
 end
@@ -208,46 +203,38 @@ function Library.Init()
                         local Magnitude = Round((CurrentCamera.CFrame.p - Torso.Position).Magnitude)
 
                         Objects.Name.Visible = Library.Options.Names
-                        Objects.Name.Transparency = 1
                         Objects.Name.Color = Library.Colors.Names
                         Objects.Name.Position = Vector2New(X, BoxPosition.Y - 15)
 
                         Objects.Box.Visible = Library.Options.Boxes
-                        Objects.Box.Transparency = 1
                         Objects.Box.Color = Library.Colors.Boxes
                         Objects.Box.Position = BoxPosition
                         Objects.Box.Size = BoxSize
 
                         Objects.BoxOutline.Visible = Library.Options.Boxes
-                        Objects.BoxOutline.Transparency = 1
                         Objects.BoxOutline.Position = BoxPosition
                         Objects.BoxOutline.Size = BoxSize
 
                         Objects.BoxFill.Visible = Library.Options.BoxFill
-                        Objects.BoxFill.Transparency = 0.5
                         Objects.BoxFill.Color = Library.Colors.BoxFill
                         Objects.BoxFill.Position = BoxPosition
                         Objects.BoxFill.Size = BoxSize
 
                         Objects.Healthbar.Visible = Library.Options.Healthbars
-                        Objects.Healthbar.Transparency = 1
                         Objects.Healthbar.Color = Library.Colors.Healthbars
                         Objects.Healthbar.Position = HealthbarPosition
                         Objects.Healthbar.Size = RoundVec(Vector2New(HealthbarSize.X, HealthbarSize.Y * math.clamp(Health / MaxHealth, 0, 1)))
 
                         Objects.HealthbarOutline.Visible = Library.Options.Healthbars
-                        Objects.HealthbarOutline.Transparency = 1
                         Objects.HealthbarOutline.Position = HealthbarPosition
                         Objects.HealthbarOutline.Size = HealthbarSize
 
                         Objects.Distance.Visible = Library.Options.Distance
-                        Objects.Distance.Transparency = 1
                         Objects.Distance.Color = Library.Colors.Distance
                         Objects.Distance.Text = Magnitude .. " Studs"
                         Objects.Distance.Position = Vector2New(X, (BoxPosition.Y + BoxSize.Y) + 3)
 
                         Objects.Tracer.Visible = Library.Options.Tracers
-                        Objects.Tracer.Transparency = 1
                         Objects.Tracer.Color = Library.Colors.Tracers
                         Objects.Tracer.From = Vector2New(Mouse.X, Mouse.Y + 36)
                         Objects.Tracer.To = Vector2New(X, Y)
@@ -258,26 +245,12 @@ function Library.Init()
                     end
                 else
                     for i,v in pairs(Objects) do
-                        coroutine.wrap(function()
-                            for i = v.Transparency, 0, -0.02 do
-                                v.Transparency = i
-                                task.wait()
-                            end
-                        
-                            v.Visible = false
-                        end)()
+                        v.Visible = false
                     end
                 end
             else
                 for i,v in pairs(Objects) do
-                    coroutine.wrap(function()
-                        for i = v.Transparency, 0, -0.02 do
-                            v.Transparency = i
-                            task.wait()
-                        end
-                    
-                        v.Visible = false
-                    end)()
+                    v.Visible = false
                 end
             end
         end
@@ -288,4 +261,4 @@ function Library.Init()
     end
 end
 
-return Library
+Library.Init()
