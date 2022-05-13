@@ -1,6 +1,6 @@
 local client = {}; do
     coroutine.wrap(function()
-        for i,v in pairs(getscripts()) do
+        for i,v in pairs(getloadedmodules()) do
             if (v.Name == "camera") then
                 client.camera = require(v);
             elseif (v.Name == "network") then
