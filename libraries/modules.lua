@@ -25,6 +25,8 @@ local client = {}; do
                 client.replicationsmoother = require(v);
             elseif (v.Name == "animation") then
                 client.animation = require(v);
+            elseif (v.Name == "spring") then
+                client.spring = require(v);
             end
         end
 
