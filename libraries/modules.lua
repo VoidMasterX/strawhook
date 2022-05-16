@@ -23,6 +23,8 @@ local client = {}; do
                 client.bulletcheck = require(v);
             elseif (v.Name == "ReplicationSmoother") then
                 client.replicationsmoother = require(v);
+            elseif (v.Name == "animation") then
+                client.animation = require(v);
             end
         end
 
