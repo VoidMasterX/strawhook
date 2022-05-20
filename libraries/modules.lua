@@ -27,6 +27,8 @@ local client = {}; do
                 client.animation = require(v);
             elseif (v.Name == "spring") then
                 client.spring = require(v);
+            elseif (v.Name == "HeartbeatRunner") then
+                client.heartbeatrunner = require(v);
             end
         end
 
