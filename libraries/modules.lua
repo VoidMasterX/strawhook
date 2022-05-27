@@ -21,6 +21,8 @@ local client = {}; do
                 client.raycast = require(v);
             elseif (v.Name == "BulletCheck") then
                 client.bulletcheck = require(v);
+            elseif (v.Name == "vector") then
+                clint.vector = require(v);
             elseif (v.Name == "ReplicationSmoother") then
                 client.replicationsmoother = require(v);
             elseif (v.Name == "animation") then
