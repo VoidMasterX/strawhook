@@ -22,7 +22,7 @@ local client = {}; do
             elseif (v.Name == "BulletCheck") then
                 client.bulletcheck = require(v);
             elseif (v.Name == "vector") then
-                clint.vector = require(v);
+                client.vector = require(v);
             elseif (v.Name == "ReplicationSmoother") then
                 client.replicationsmoother = require(v);
             elseif (v.Name == "animation") then
