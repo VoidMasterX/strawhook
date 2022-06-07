@@ -1,6 +1,6 @@
 local client = {}; do
     coroutine.wrap(function()
-        for i,v in pairs(getloadedmodules()) do
+        for i,v in next, getloadedmodules() do
             if (v.Name == "camera") then
                 client.camera = require(v);
             elseif (v.Name == "network") then
@@ -46,7 +46,7 @@ local client = {}; do
 
         setreadonly(client.particle, false);
 
-        for i,v in pairs(client.networkfunctions) do
+        for i,v in next, client.networkfunctions do
             local constants = debug.getconstants(v);
 
             if (table.find(constants, "KNIFE") and table.find(constants, "GRENADE")) then
@@ -54,6 +54,16 @@ local client = {}; do
                 client.loadknife = debug.getupvalue(v, 7);
             elseif (table.find(constants, "killfeed")) then
                 client.killfeed = i;
+            end
+        end
+        
+        for i,v in next, debug.getupvalues(client.loadgun) do
+            if (typeof(v) == "function") then
+                local name = debug.getinfo(v);
+                
+                if (name == "gunsway" or name == "gunbob") then
+                    client[name] = v;
+                end
             end
         end
     end)();
