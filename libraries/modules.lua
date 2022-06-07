@@ -59,7 +59,7 @@ local client = {}; do
         
         for i,v in next, debug.getupvalues(client.loadgun) do
             if (typeof(v) == "function") then
-                local name = debug.getinfo(v);
+                local name = debug.getinfo(v).name;
                 
                 if (name == "gunsway" or name == "gunbob") then
                     client[name] = v;
