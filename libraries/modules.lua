@@ -31,6 +31,8 @@ local client = {}; do
                 client.spring = require(v);
             elseif (v.Name == "HeartbeatRunner") then
                 client.heartbeatrunner = require(v);
+            elseif (v.Name == "cframe") then
+                client.cframe = require(v);
             end
         end
 
