@@ -154,6 +154,7 @@ function Library.RemoveEsp(Player)
 
         for i,v in pairs(Data) do
             v:Remove()
+            Data[i] = nil
         end
     end
 end
