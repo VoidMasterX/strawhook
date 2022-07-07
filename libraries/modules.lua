@@ -52,8 +52,8 @@ local client = {}; do
             local constants = debug.getconstants(v);
 
             if (table.find(constants, "KNIFE") and table.find(constants, "GRENADE")) then
-                client.loadgun = debug.getupvalue(v, 6);
-                client.loadknife = debug.getupvalue(v, 7);
+                client.loadgun = debug.getupvalue(v, 7);
+                client.loadknife = debug.getupvalue(v, 8);
             elseif (table.find(constants, "killfeed")) then
                 client.killfeed = i;
             end
